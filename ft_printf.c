@@ -25,9 +25,9 @@ static int	ft_format(va_list args, const char c)
 	if (c == 'p')
 		return (ft_putptr(va_arg(args, void *)));
 	if (c == 'x')
-		return (ft_puthex((unsigned long)va_arg(args, int), 0));
+		return (ft_puthex(va_arg(args, int), 0));
 	if (c == 'X')
-		return (ft_puthex((unsigned long)va_arg(args, int), 1));
+		return (ft_puthex(va_arg(args, int), 1));
 	if (c == '%')
 		return (ft_putchar('%'));
 	return (0);
