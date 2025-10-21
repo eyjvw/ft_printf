@@ -6,38 +6,42 @@
 /*   By: sbonneau <sbonneau@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 02:11:12 by sbonneau          #+#    #+#             */
-/*   Updated: 2025/10/16 04:37:51 by sbonneau         ###   ########.fr       */
+/*   Updated: 2025/10/21 05:18:23 by sbonneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_puthex_ptr(unsigned long n)
+static int	ft_puthex_base(unsigned long n, const char *base)
 {
-	int		count;
-	char	*base;
+	int	count;
 
 	count = 0;
-	base = "0123456789abcdef";
 	if (n >= 16)
-	{
-		count += ft_puthex_ptr(n / 16);
-		count += ft_puthex_ptr(n % 16);
-	}
-	else
-		count += ft_putchar(base[n % 16]);
+		count += ft_puthex_base(n / 16, base);
+	count += ft_putchar(base[n % 16]);
 	return (count);
+}
+
+int	ft_puthex(unsigned int n, int upper)
+{
+	const char	*base;
+
+	if (upper == 1)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+	return (ft_puthex_base((unsigned long)n, base));
 }
 
 int	ft_putptr(void *ptr)
 {
-	unsigned long	addr;
-	int				count;
+	int	count;
 
 	if (!ptr)
 		return (ft_putstr("(nil)"));
-	addr = (unsigned long)ptr;
-	count = ft_putstr("0x");
-	count += ft_puthex_ptr(addr);
+	count = 0;
+	count += ft_putstr("0x");
+	count += ft_puthex_base((unsigned long)ptr, "0123456789abcdef");
 	return (count);
 }

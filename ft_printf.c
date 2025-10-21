@@ -6,7 +6,7 @@
 /*   By: sbonneau <sbonneau@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 00:23:10 by sbonneau          #+#    #+#             */
-/*   Updated: 2025/10/16 04:45:51 by sbonneau         ###   ########.fr       */
+/*   Updated: 2025/10/21 05:34:14 by sbonneau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static int	ft_format(va_list args, const char c)
 	if (c == 'p')
 		return (ft_putptr(va_arg(args, void *)));
 	if (c == 'x')
-		return (ft_puthex(va_arg(args, int), 0));
+		return (ft_puthex(va_arg(args, unsigned int), 0));
 	if (c == 'X')
-		return (ft_puthex(va_arg(args, int), 1));
+		return (ft_puthex(va_arg(args, unsigned int), 1));
 	if (c == '%')
 		return (ft_putchar('%'));
 	return (0);
