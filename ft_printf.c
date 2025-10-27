@@ -39,6 +39,8 @@ int	ft_printf(const char *format, ...)
 	int		i;
 	int		count;
 
+	if (!format)
+		return (0);
 	va_start(args, format);
 	i = 0;
 	count = 0;
